@@ -12,6 +12,9 @@ alias mv="mv -v"
 alias ln="ln -v"
 alias pi="pacaur -S"
 alias pu="pacaur -Syu"
+alias diff="diff --color"
+
+alias open="xdg-open"
 
 alias npm-exec='PATH=$(npm bin):$PATH'
 
@@ -23,3 +26,6 @@ alias servethis="python3 -m http.server"
 alias screanshot="vendace"
 alias prscr="vendace"
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+
+alias prom="sudo ip link set wlan0 promisc on"
+alias promoff="sudo ip link set wlan0 promisc off"

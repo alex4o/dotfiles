@@ -10,11 +10,6 @@ setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_SAVE_NO_DUPS
 
-
-function emsdk(){
-	source ~/Applications/emsdk_portable/emsdk_env.sh
-}
-
 function activate() {
 	if (( $# == 0 )); then
 		echo must provide virtualenv name argument

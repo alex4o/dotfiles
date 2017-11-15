@@ -11,6 +11,9 @@ export ANDROID_HOME=/opt/android-sdk
 
 export QT_QPA_PLATFORMTHEME='qt5ct'  
 export QT_STYLE_OVERRIDE='gtk2' 
+export WINEDLLOVERRIDES='mscoree=d;mshtml=d'
+
+#export WINE_PREFIX=$HOEM/wine
 
 path=($path /home/alex4o/.gem/ruby/2.3.0/bin /tools/bin /usr/local/bin $GOPATH/bin)
 
