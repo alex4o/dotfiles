@@ -13,9 +13,9 @@ export QT_QPA_PLATFORMTHEME='qt5ct'
 export QT_STYLE_OVERRIDE='gtk2' 
 export WINEDLLOVERRIDES='mscoree=d;mshtml=d'
 
-#export WINE_PREFIX=$HOEM/wine
+#export WINE_PREFIX=$HOME/wine
 
-path=($path /home/alex4o/.gem/ruby/2.3.0/bin /tools/bin /usr/local/bin $GOPATH/bin)
+path=($path $HOME/.local/bin /tools/bin /usr/local/bin $GOPATH/bin $HOME/Applications/flutter/bin)
 
 # set32()                                                                                                       ~
 # {
