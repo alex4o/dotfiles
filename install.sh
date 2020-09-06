@@ -1,9 +1,9 @@
 #/bin/bash
 
-ln -s $(pwd)/.zsh $HOME/.zsh
-ln -s $(pwd)/.zshrc $HOME/.zshrc
+ln -sfT $(pwd)/.zsh $HOME/.zsh
+ln -sfT $(pwd)/.zshrc $HOME/.zshrc
 
-ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
-ln -s $(pwd)/.tmux $HOME/.tmux
+ln -sfT $(pwd)/.tmux.conf $HOME/.tmux.conf
+ln -sfT $(pwd)/.tmux $HOME/.tmux
 
-ln -s $(pwd)/.config/nvim $HOME/.config/nvim
+ln -sfT $(pwd)/.config/nvim $HOME/.config/nvim
