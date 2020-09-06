@@ -7,3 +7,6 @@ ln -sfT $(pwd)/.tmux.conf $HOME/.tmux.conf
 ln -sfT $(pwd)/.tmux $HOME/.tmux
 
 ln -sfT $(pwd)/.config/nvim $HOME/.config/nvim
+
+mkdir -p ~/.vim
+touch ~/.vim/local.vim
