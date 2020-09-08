@@ -1,4 +1,6 @@
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_PYTHON_LOG_FILE="/tmp/nvim_log"
+let $NVIM_PYTHON_LOG_LEVEL="DEBUG"
 
 syntax on
 
@@ -81,6 +83,7 @@ if executable('clangd')
         \ 'cmd': {server_info->['clangd', '-background-index']},
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
         \ })
+endif
 
 " autocmd User Ncm2Plugin call ncm2#register_source({
 " \   'name': 'nim.nvim',
