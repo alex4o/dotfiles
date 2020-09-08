@@ -15,7 +15,9 @@ export WINEDLLOVERRIDES='mscoree=d;mshtml=d'
 
 #export WINE_PREFIX=$HOME/wine
 
-#path=($path $HOME/.local/bin /tools/bin /usr/local/bin $GOPATH/bin $HOME/Applications/flutter/bin)
+path=($path $HOME/.local/bin)
+#/tools/bin /usr/local/bin 
+#$GOPATH/bin $HOME/Applications/flutter/bin)
 
 # set32()                                                                                                       ~
 # {

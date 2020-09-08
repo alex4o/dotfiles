@@ -44,9 +44,17 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 
-" Plug 'alaviss/nim.nvim'
+Plug 'alaviss/nim.nvim'
+Plug 'mogelbrod/vim-jsonpath'
 
 call plug#end()
+
+set nofoldenable
+
+
+" Define mappings for json buffers
+au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
+au FileType json noremap <buffer> <silent> <leader>g :call jsonpath#goto()<CR>
 
 syntax enable
 set background=dark
@@ -54,9 +62,10 @@ set background=dark
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
+let g:lsp_use_lua = has('nvim-0.4.0') || (has('lua') && has('patch-8.2.0775'))
 let g:lsp_diagnostics_float_cursor=1
 let g:lsp_diagnostics_float_delay=0
-let g:lsp_virtual_text_enabled=0
+let g:lsp_virtual_text_enabled=1
 
 	" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
@@ -73,6 +82,14 @@ if executable('clangd')
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
         \ })
 endif
+
+autocmd User Ncm2Plugin call ncm2#register_source({
+\   'name': 'nim.nvim',
+\   'priority': 9,
+\   'scope': ['nim'],
+\   'mark': 'nim',
+\   'on_complete': {ctx -> nim#suggest#sug#GetAllCandidates({start, candidates -> ncm2#complete(ctx, start, candidates)})}
+\})
 
 source ~/.vim/local.vim
 
