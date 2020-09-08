@@ -81,15 +81,15 @@ if executable('clangd')
         \ 'cmd': {server_info->['clangd', '-background-index']},
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
         \ })
-endif
 
-autocmd User Ncm2Plugin call ncm2#register_source({
-\   'name': 'nim.nvim',
-\   'priority': 9,
-\   'scope': ['nim'],
-\   'mark': 'nim',
-\   'on_complete': {ctx -> nim#suggest#sug#GetAllCandidates({start, candidates -> ncm2#complete(ctx, start, candidates)})}
-\})
+" autocmd User Ncm2Plugin call ncm2#register_source({
+" \   'name': 'nim.nvim',
+" \   'priority': 9,
+" \   'scope': ['nim'],
+" \   'mark': 'nim',
+" \   'on_complete': {ctx -> nim#suggest#sug#GetAllCandidates({start, candidates -> ncm2#complete(ctx, start, candidates)})}
+" \})
+
 
 source ~/.vim/local.vim
 
