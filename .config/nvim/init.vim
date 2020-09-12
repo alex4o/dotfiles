@@ -26,7 +26,9 @@ set selection=exclusive
 call plug#begin('~/.vim/plugged')
 
 Plug 'nanotech/jellybeans.vim'
-Plug 'bling/vim-bufferline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
@@ -46,13 +48,17 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 
-Plug 'alaviss/nim.nvim'
+" Plug 'alaviss/nim.nvim'
 Plug 'mogelbrod/vim-jsonpath'
 
 call plug#end()
 
 set nofoldenable
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Define mappings for json buffers
 au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
@@ -60,6 +66,7 @@ au FileType json noremap <buffer> <silent> <leader>g :call jsonpath#goto()<CR>
 
 syntax enable
 set background=dark
+let g:airline_theme='owo'
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
@@ -69,7 +76,7 @@ let g:lsp_diagnostics_float_cursor=1
 let g:lsp_diagnostics_float_delay=0
 let g:lsp_virtual_text_enabled=1
 
-	" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
