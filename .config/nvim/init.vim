@@ -48,8 +48,9 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 
-" Plug 'alaviss/nim.nvim'
 Plug 'mogelbrod/vim-jsonpath'
+
+source ~/.vim/local.vim
 
 call plug#end()
 
@@ -101,6 +102,5 @@ endif
 " \})
 
 
-source ~/.vim/local.vim
 
 
