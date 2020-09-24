@@ -29,7 +29,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'flazz/vim-colorschemes'
@@ -44,9 +44,8 @@ Plug 'ncm2/ncm2'                   " Nvim completion manager
 Plug 'ncm2/ncm2-vim-lsp'           " Bridges vim-lsp and ncm2
 Plug 'roxma/nvim-yarp'             " Remote plugin framework (needed for NCM2)
 
-Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'mogelbrod/vim-jsonpath'
 
@@ -54,36 +53,52 @@ source ~/.vim/local.vim
 
 call plug#end()
 
-set nofoldenable
+" Map vim-jsonpath to buffers 
 
+au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
+au FileType json noremap <buffer> <silent> <leader>g :call jsonpath#goto()<CR>
+
+" Config plugins shouldn't touch
+
+syntax enable
+set background=dark
+set nofoldenable
+map <C-PageUp> :bp<CR>
+map <C-PageDown> :bn<CR>
+
+" Airline Config
+
+let g:airline_theme='owo'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-" Define mappings for json buffers
-au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
-au FileType json noremap <buffer> <silent> <leader>g :call jsonpath#goto()<CR>
-
-syntax enable
-set background=dark
-let g:airline_theme='owo'
+" ncm2 autocomplete Config
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
+
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" fzf Config
+
+let g:fzf_preview_window = 'right:25%'
+map ` :Buffers<cr>
+map <C-P> :Commands<cr>
+map <C-p> :Files<cr>
+
+" Lsp Config
 
 let g:lsp_use_lua = has('nvim-0.4.0') || (has('lua') && has('patch-8.2.0775'))
 let g:lsp_diagnostics_float_cursor=1
 let g:lsp_diagnostics_float_delay=0
 let g:lsp_virtual_text_enabled=1
 
-" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-map <C-PageUp> :bp<CR>
-map <C-PageDown> :bn<CR>
+" Lsp Clangd Config
 
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
