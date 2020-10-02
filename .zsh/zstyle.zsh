@@ -23,3 +23,5 @@ zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~
 #knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 
 #zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts\
+
+source /usr/share/fzf/completion.zsh

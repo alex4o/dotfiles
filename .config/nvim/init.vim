@@ -26,6 +26,7 @@ set selection=exclusive
 call plug#begin('~/.vim/plugged')
 
 Plug 'nanotech/jellybeans.vim'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -47,11 +48,17 @@ Plug 'roxma/nvim-yarp'             " Remote plugin framework (needed for NCM2)
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
+" JSON lang support
 Plug 'mogelbrod/vim-jsonpath'
+" JSX syntax hightlight support
+Plug 'maxmellon/vim-jsx-pretty'
 
 source ~/.vim/local.vim
 
 call plug#end()
+
+lua require('init')
+
 
 " Map vim-jsonpath to buffers 
 
@@ -63,8 +70,8 @@ au FileType json noremap <buffer> <silent> <leader>g :call jsonpath#goto()<CR>
 syntax enable
 set background=dark
 set nofoldenable
-map <C-PageUp> :bp<CR>
-map <C-PageDown> :bn<CR>
+map <C-PageUp> :bn<CR>
+map <C-PageDown> :bp<CR>
 
 " Airline Config
 
@@ -87,8 +94,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 let g:fzf_preview_window = 'right:25%'
 map ` :Buffers<cr>
-map <C-P> :Commands<cr>
-map <C-p> :Files<cr>
+map <C-S-P> :Commands<cr>
+map <C-p> :GFiles<cr>
 
 " Lsp Config
 
@@ -106,6 +113,15 @@ if executable('clangd')
         \ 'cmd': {server_info->['clangd', '-background-index']},
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
         \ })
+endif
+
+if executable('typescript-language-server')
+	au User lsp_setup call lsp#register_server({
+		\ 'name': 'typescript-language-server',
+		\ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+		\ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+		\ 'whitelist': ['javascript', 'javascript.jsx'],
+		\ })
 endif
 
 " autocmd User Ncm2Plugin call ncm2#register_source({

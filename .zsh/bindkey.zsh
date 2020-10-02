@@ -1,11 +1,3 @@
-
-
-insert_sudo () {
-	zle beginning-of-line; zle -U "sudo "
-}
-
-zle -N insert-sudo insert_sudo
-bindkey "^S" insert-sudo
 typeset -A key
 
 key[Home]=${terminfo[khome]}
@@ -48,3 +40,5 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-init
     zle -N zle-line-finish
 fi
+
+source /usr/share/fzf/key-bindings.zsh
