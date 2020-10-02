@@ -41,4 +41,4 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-finish
 fi
 
-source fzf/key-bindings.zsh
+source $HOME/.zsh/fzf/key-bindings.zsh
