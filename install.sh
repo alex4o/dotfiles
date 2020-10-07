@@ -12,6 +12,7 @@ ln -sfT $(pwd)/.tmux.conf $HOME/.tmux.conf
 ln -sfT $(pwd)/.tmux $HOME/.tmux
 
 ln -sfT $(pwd)/.config/nvim $HOME/.config/nvim
+ln -sfT $(pwd)/.config/alacritty $HOME/.config/allacrity
 
 
 if [ ! -f "${HOME}/.gitconfig-local" ]; then
