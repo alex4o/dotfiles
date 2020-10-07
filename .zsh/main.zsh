@@ -1,6 +1,6 @@
 plugins=(git ssh-agent)
 eval $(dircolors -b ~/.zsh/dircolors)
-ssh-add 2> /dev/null
+ssh-add ~/.ssh/* 2> /dev/null
 
 HISTSIZE=1200
 SAVEHIST=2000
@@ -9,6 +9,7 @@ HISTFILE=~/.zsh_history
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_SAVE_NO_DUPS
+setopt histignoredups
 
 function activate() {
 	if (( $# == 0 )); then
