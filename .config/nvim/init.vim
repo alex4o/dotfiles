@@ -11,6 +11,7 @@ set nocompatible
 
 set nobackup
 set hlsearch
+set modeline
 
 set backspace=indent,eol,start
 set autoindent
