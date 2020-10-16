@@ -23,18 +23,23 @@ set softtabstop=4
 set hidden
 
 set selection=exclusive
+" I give up on not using the mouse
+set mouse=a
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'nanotech/jellybeans.vim'
+Plug 'doums/darcula'
+Plug 'joshdick/onedark.vim'
+" Plug 'flazz/vim-colorschemes'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
-Plug 'flazz/vim-colorschemes'
 
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar', { 'on':  'TagbarOpenAutoClose' }
@@ -54,12 +59,28 @@ Plug 'mogelbrod/vim-jsonpath'
 " JSX syntax hightlight support
 Plug 'maxmellon/vim-jsx-pretty'
 
+Plug 'editorconfig/editorconfig-vim'
+
 source ~/.vim/local.vim
 
 call plug#end()
 
+if has("termguicolors")     " set true colors
+    set t_8f=\[[38;2;%lu;%lu;%lum
+    set t_8b=\[[48;2;%lu;%lu;%lum
+    set termguicolors
+	color darcula
+	hi! Normal ctermbg=NONE guibg=NONE
+	hi! NonText ctermbg=NONE guibg=NONE
+	hi! LineNr ctermbg=NONE guibg=NONE
+endif
+
+
+" Load luajit part
 lua require('init')
 
+" Go to the last position of the opened file
+autocmd BufReadPost * exe "normal '\""
 
 " Map vim-jsonpath to buffers 
 
@@ -82,6 +103,10 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
+" git-gutter
+let g:gitgutter_sign_allow_clobber = 1
+autocmd VimEnter * :GitGutterLineNrHighlightsEnable
+
 " ncm2 autocomplete Config
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -92,8 +117,9 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " fzf Config
-
-let g:fzf_preview_window = 'right:25%'
+let g:fzf_layout = { 'window': { 'yoffset': 0.1, 'width': 0.9, 'height': 0.7 } }
+" let $FZF_DEFAULT_OPTS="--ansi"
+let g:fzf_preview_window = 'right:50%'
 map ` :Buffers<cr>
 map <C-S-P> :Commands<cr>
 map <C-p> :GFiles<cr>
