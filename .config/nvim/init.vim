@@ -26,7 +26,7 @@ set selection=exclusive
 " I give up on not using the mouse
 set mouse=a
 
-setlocal spell spelllang=en_us
+set spell spelllang=en_us
 
 call plug#begin('~/.vim/plugged')
 
