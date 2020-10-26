@@ -26,6 +26,8 @@ set selection=exclusive
 " I give up on not using the mouse
 set mouse=a
 
+setlocal spell spelllang=en_us
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'nanotech/jellybeans.vim'
@@ -49,7 +51,7 @@ Plug 'prabirshrestha/vim-lsp'
 
 Plug 'ncm2/ncm2'                   " Nvim completion manager
 Plug 'ncm2/ncm2-vim-lsp'           " Bridges vim-lsp and ncm2
-Plug 'roxma/nvim-yarp'             " Remote plugin framework (needed for NCM2)
+Plug 'roxma/nvim-yarp'             " Remote plug-in framework (needed for NCM2)
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -60,6 +62,8 @@ Plug 'mogelbrod/vim-jsonpath'
 Plug 'maxmellon/vim-jsx-pretty'
 
 Plug 'editorconfig/editorconfig-vim'
+
+Plug 'huawenyu/vimgdb'
 
 source ~/.vim/local.vim
 
@@ -95,7 +99,7 @@ set nofoldenable
 map <C-PageUp> :bn<CR>
 map <C-PageDown> :bp<CR>
 
-" Airline Config
+" Airline config
 
 let g:airline_theme='owo'
 let g:airline#extensions#tabline#enabled = 1
