@@ -2,18 +2,25 @@ alias ..='cd ..'            # Go up one directory
 alias ...='cd ../..'        # Go up two directories
 alias ....='cd ../../..' 
 
-alias ls="ls --group-directories-first --color=auto"
-alias ll="ls --group-directories-first -lA --color=auto"
-alias la="ls --group-directories-first -a --color=auto"
+# Prefer eza for ls if available; else gls; else BSD ls with -G
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --group-directories-first'
+elif command -v gls >/dev/null 2>&1; then
+  alias ls='gls --group-directories-first --color=auto'
+else
+  alias ls='ls -G'
+fi
+
+
 alias grep="grep --color=auto"
 alias cp="cp -v"
 alias mv="mv -v"
 alias ln="ln -v"
 alias diff="diff --color"
 
-alias open="xdg-open"
-
-alias npm-exec='PATH=$(npm bin):$PATH'
+if command -v xdg-open >/dev/null 2>&1; then
+    alias open="xdg-open"
+fi
 
 alias nethack='telnet nethack.alt.org'
 
@@ -58,4 +65,3 @@ function tunnel() {
 	print_address $remote_port
 	ssh -N -R $remote_port\:localhost\:$1 tunnel@tunnel.bonin.tech
 }
-
