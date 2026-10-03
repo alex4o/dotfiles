@@ -15,7 +15,9 @@ export WINEDLLOVERRIDES='mscoree=d;mshtml=d'
 
 #export WINE_PREFIX=$HOME/wine
 
-path=($path $HOME/.local/bin)
+path=($path $HOME/.local/bin /Applications/Tailscale.app/Contents/MacOS)
+
+export SUDO_ASKPASS=$HOME/.local/bin/sudo-askpass
 #/tools/bin /usr/local/bin 
 #$GOPATH/bin $HOME/Applications/flutter/bin)
 
